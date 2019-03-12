@@ -33,7 +33,7 @@
     
       this.setState( state => {
 
-        if (this.state.running){
+        if (state.running){
 
           clearInterval(this.timer)
 
@@ -45,7 +45,7 @@
           })
         }
 
-        return {running : !this.state.running}
+        return {running : !state.running}
 
       })
       
