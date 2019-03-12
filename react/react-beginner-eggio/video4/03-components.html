@@ -1,0 +1,50 @@
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+    const rootElement = document.getElementById('root');
+    const message = (props) => <div>{props.msg}</div>
+
+    // way 1
+    const element = (
+        <div className="container">
+            {message({msg : 'Hello world'})}
+            {message({msg : 'Goodbye world'})}
+        </div>
+    )
+
+    // way 2
+    const element2 = (
+        <div className="container">
+            {React.createElement(message, {msg : 'Hello world from element2'})}
+            {React.createElement(message, {msg : 'Goodbye world from element2'})}
+        </div>
+    )
+
+    // way 3
+    const Message = (props) => <div>{props.msg}</div> // using capitalize variable name for being recognized as a variable in the tag when babel transpile it
+    const element3 = (
+        <div className="container">
+            <Message msg="Hello world from element3" />
+            <Message msg="Goodbye world from element3" />
+        </div>
+    )
+
+    // way 4 (using children)
+    const Message2 = (props) => <div>{props.children}</div> // same as way 3, usign capital letter in the variable name
+    const element4 = (
+        <div className="container">
+            <Message2>Hello world from element4</Message2>
+            <Message2>Goodbye world from element4</Message2>
+        </div>
+    )
+
+    ReactDOM.render(element, root);
+    ReactDOM.render(element2, root); // replace element content inside root
+    ReactDOM.render(element3, root); // replace element2 content inside root
+    ReactDOM.render(element4, root); // replace element3 content inside root
+</script>
+

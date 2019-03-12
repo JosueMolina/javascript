@@ -1,0 +1,62 @@
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+    function SayHelloAsFunction(props) {
+        return (
+            <div>
+                Hello {props.firstName} {props.lastName || 'unknown'}!
+            </div>
+        )
+    }
+
+    // PropTypes variable is declared by the prop-types scripts above, therefore we commented it below
+    // const PropTypes = {
+    //     string(props, propName, componentName) {
+    //         if ( typeof props[propName] !== 'string' ) {
+    //             return new Error (`Hey you should pass a string for ${propName} in ${componentName} but you passed a ${typeof props[propName]}!`)
+    //         }
+    //     }
+    // }
+
+    SayHelloAsFunction.propTypes = {
+        firstName : PropTypes.string.isRequired,
+        lastName : PropTypes.string.isRequired
+    }
+
+    // another way to declare the component as a class
+
+    class SayHelloAsClass extends React.Component {
+
+      static propTypes = {
+        firstName : PropTypes.string.isRequired,
+        lastName : PropTypes.string.isRequired
+      }
+
+      render() {
+        const {firstName, lastName} = this.props
+        return (
+          <div>
+            Hello {firstName} {lastName}!
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+        <SayHelloAsFunction firstName={true} />,
+        document.getElementById('root')
+    )
+
+    ReactDOM.render(
+      <SayHelloAsClass firstName={true}/>,
+      document.getElementById('root')
+    )
+
+</script>
+
