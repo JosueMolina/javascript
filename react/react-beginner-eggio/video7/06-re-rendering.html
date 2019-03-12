@@ -1,0 +1,19 @@
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+  function tick() {
+    const time = new Date().toLocaleTimeString();
+    const element = <div>It is <input value={time} />  <input value={time} /> </div> // focus is not affected on re-rendering, great!
+    ReactDOM.render(element, document.getElementById('root'));
+  }
+
+  tick()
+
+  setInterval(tick, 1000)
+
+</script>
